@@ -1,7 +1,5 @@
 package com.packagename.myapp.spring;
 
-import com.github.appreciated.app.layout.notification.DefaultNotificationHolder;
-import com.github.appreciated.app.layout.notification.component.AppBarNotificationButton;
 import com.github.appreciated.app.layout.component.appbar.AppBarBuilder;
 import com.github.appreciated.app.layout.component.applayout.Behaviour;
 import com.github.appreciated.app.layout.component.applayout.LeftLayouts;
@@ -20,6 +18,9 @@ import com.vaadin.flow.component.page.Viewport;
 
 import static com.github.appreciated.app.layout.entity.Section.FOOTER;
 import static com.github.appreciated.app.layout.entity.Section.HEADER;
+
+import com.github.appreciated.app.layout.addons.notification.DefaultNotificationHolder;
+import com.github.appreciated.app.layout.addons.notification.component.AppBarNotificationButton;
 
 /**
  * The main view contains a button and a template element.
