@@ -1,0 +1,41 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+## Vaadin 10 ###
+frontend-es*/
+
+## logging ##
+log/
+*.log
+*.log.*.gz
+
+*.bak
+/node/
+/node_modules/
+/webpack.config.js
+/webpack.generated.js
+/package.json
+/package-lock.json
