@@ -1,7 +1,6 @@
 package com.packagename.myapp.spring;
 
-import com.github.appreciated.app.layout.component.appbar.AppBarBuilder;
-import com.github.appreciated.app.layout.component.applayout.Behaviour;
+
 import com.github.appreciated.app.layout.component.applayout.LeftLayouts;
 import com.github.appreciated.app.layout.component.builder.AppLayoutBuilder;
 import com.github.appreciated.app.layout.component.menu.left.builder.LeftAppMenuBuilder;
@@ -19,9 +18,6 @@ import com.vaadin.flow.component.page.Viewport;
 import static com.github.appreciated.app.layout.entity.Section.FOOTER;
 import static com.github.appreciated.app.layout.entity.Section.HEADER;
 
-import com.github.appreciated.app.layout.addons.notification.DefaultNotificationHolder;
-import com.github.appreciated.app.layout.addons.notification.component.AppBarNotificationButton;
-
 /**
  * The main view contains a button and a template element.
  */
@@ -31,60 +27,33 @@ import com.github.appreciated.app.layout.addons.notification.component.AppBarNot
 public class MainAppLayout extends AppLayoutRouterLayout<LeftLayouts.LeftResponsive> {
 
     public MainAppLayout() {
-        DefaultNotificationHolder notifications = new DefaultNotificationHolder();
-        notifications.addClickListener(notification -> {/* ... */});
-
         LeftNavigationItem menuEntry = new LeftNavigationItem("Menu", VaadinIcon.MENU.create(), MainView.class);
         DefaultBadgeHolder badge = new DefaultBadgeHolder(5);
         badge.bind(menuEntry.getBadge());
 
-        init((LeftLayouts.LeftResponsive) AppLayoutBuilder
-                .get(Behaviour.LEFT_RESPONSIVE)
+        init(AppLayoutBuilder.get(LeftLayouts.LeftResponsive.class)
                 .withTitle("App Layout")
-                .withAppBar(AppBarBuilder
-                        .get()
-                        .add(new AppBarNotificationButton<>(VaadinIcon.BELL, notifications))
-                        .build())
-                .withAppMenu(LeftAppMenuBuilder
-                        .get()
-                        .addToSection(new LeftHeaderItem("Menu-Header",
-                                "Version 3.0.0",
-                                "/frontend/images/logo.png"
-                        ), HEADER)
-                        .addToSection(new LeftClickableItem("Clickable Entry",
-                                VaadinIcon.COG.create(),
-                                clickEvent -> Notification.show("onClick ...")
-                        ), HEADER)
-                        .add(new LeftNavigationItem("Home", VaadinIcon.HOME.create(), MainView.class))
-                        .add(new LeftNavigationItem("Grid", VaadinIcon.TABLE.create(), MainView.class))
-                        .add(LeftSubMenuBuilder
-                                .get("My Submenu", VaadinIcon.PLUS.create())
-                                .add(LeftSubMenuBuilder
-                                        .get("My Submenu", VaadinIcon.PLUS.create())
-                                        .add(new LeftNavigationItem("Charts",
-                                                VaadinIcon.SPLINE_CHART.create(),
-                                                MainView.class
-                                        ))
-                                        .add(new LeftNavigationItem("Contact",
-                                                VaadinIcon.CONNECT.create(),
-                                                MainView.class
-                                        ))
-                                        .add(new LeftNavigationItem("More",
-                                                VaadinIcon.COG.create(),
-                                                MainView.class
-                                        ))
-                                        .build())
-                                .add(new LeftNavigationItem("Contact1",
-                                        VaadinIcon.CONNECT.create(),
-                                        MainView.class
-                                ))
-                                .add(new LeftNavigationItem("More1", VaadinIcon.COG.create(), MainView.class))
-                                .build())
-                        .add(menuEntry)
-                        .addToSection(new LeftClickableItem("Clickable Entry",
-                                VaadinIcon.COG.create(),
-                                clickEvent -> Notification.show("onClick ...")
-                        ), FOOTER)
+                .withAppMenu(LeftAppMenuBuilder.get()
+                        .addToSection(HEADER,
+                                new LeftHeaderItem("Menu-Header", "Version 4.0.0", "/frontend/images/logo.png"),
+                                new LeftClickableItem("Clickable Entry", VaadinIcon.COG.create(), event -> Notification.show("onClick ..."))
+                        )
+                        .add(new LeftNavigationItem("Home", VaadinIcon.HOME.create(), MainView.class),
+                                new LeftNavigationItem("Grid", VaadinIcon.TABLE.create(), MainView.class),
+                                LeftSubMenuBuilder.get("My Submenu", VaadinIcon.PLUS.create())
+                                        .add(LeftSubMenuBuilder.get("My Submenu", VaadinIcon.PLUS.create())
+                                                        .add(new LeftNavigationItem("Charts", VaadinIcon.SPLINE_CHART.create(), MainView.class),
+                                                                new LeftNavigationItem("Contact", VaadinIcon.CONNECT.create(), MainView.class),
+                                                                new LeftNavigationItem("More", VaadinIcon.COG.create(), MainView.class))
+                                                        .build(),
+                                                new LeftNavigationItem("Contact1", VaadinIcon.CONNECT.create(), MainView.class),
+                                                new LeftNavigationItem("More1", VaadinIcon.COG.create(), MainView.class))
+                                        .build(),
+                                menuEntry
+                        )
+                        .addToSection(FOOTER,
+                                new LeftClickableItem("Clickable Entry", VaadinIcon.COG.create(), clickEvent -> Notification.show("onClick ..."))
+                        )
                         .build())
                 .build());
     }
